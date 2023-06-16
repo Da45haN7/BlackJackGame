@@ -1,6 +1,6 @@
 let player = {
-    name: "Darshan",
-    chips: 500
+    name: localStorage.getItem("name"),
+    chips: localStorage.getItem("chips")
 }
 
 let cards = []
@@ -12,6 +12,7 @@ let messageEl = document.getElementById("message-el")
 let sumEl = document.getElementById("sum-el")
 let cardsEl = document.getElementById("cards-el")
 let playerEl = document.getElementById("player-el")
+
 
 playerEl.textContent = player.name + ": $" + player.chips
 
@@ -26,8 +27,11 @@ function getRandomCard() {
     }
 }
 
+
+
 function startGame() {
     isAlive = true
+    hasBlackJack = false
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
@@ -40,7 +44,6 @@ function renderGame() {
     for (let i = 0; i < cards.length; i++) {
         cardsEl.textContent += cards[i] + " "
     }
-    
     sumEl.textContent = "Sum: " + sum
     if (sum <= 20) {
         message = "Do you want to draw a new card?"
